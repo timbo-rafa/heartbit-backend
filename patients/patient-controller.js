@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const Patients = require('./patient-model')
+const Patient = require('./patient-model')
 
 console.log('patient-controller')
 router
@@ -9,10 +9,9 @@ router
     'use strict'
 
     // treat ?query= (?)
-    Patients.find({}, function (err, patients) {
-      console.log('find', err, patients)
+    Patient.find({}, function (err, patients) {
+      //console.log('find', err, patients)
       if (err) {
-        console.log('mongo error', err)
         return next(err)
       }
       return res.status(200).send(patients)
@@ -20,8 +19,40 @@ router
     console.log('pc / get')
 })
 
-//router.post('/', function (req, res, next) {
+  .post(function (request, response, next) {
+    'use strict'
 
-//})
+    var patient  = new Patient(request.body)
+    console.log('new pat', request.body, patient)
+    patient.save(function (error) {
+      if (error) {
+        return next(error)
+      }
+      return response.status(201).end()
+    })
+  })
+
+router
+  .route('/:patient')
+  .get(function getPatient(request, response, next) {
+    'use strict'
+
+    var patient = request.patient
+
+    return response.status(200).send(patient)
+  })
+
+router.param('patient', function findPatient (request, response, next, id) {
+  'use strict'
+
+  var query = Patient.findOne()
+  query.where('_id').equals(id)
+  query.exec(function foundPatient (error, patient) {
+    if (error) return next(error)
+    if (!patient) return response.status(404).end()
+    request.patient = patient
+    return next()
+  })
+})
 
 module.exports = router

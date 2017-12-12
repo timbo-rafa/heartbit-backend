@@ -2,6 +2,7 @@
   "name": "HeartBit",
   "version": "1.0.0",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongoose": "^4.13.0",
     "morgan": "^1.9.0",
@@ -11,7 +12,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "MONGOHQ_URL=mongodb://localhost/test NODE_ENV=test mocha --require blanket ",
+    "test": "MONGOHQ_URL=mongodb://localhost/test NODE_ENV=test mocha -b",
     "start": "MONGOHQ_URL=mongodb://localhost/heartbit node index.js"
   },
   "devDependencies": {
