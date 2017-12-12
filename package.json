@@ -2,10 +2,9 @@
   "name": "HeartBit",
   "version": "1.0.0",
   "dependencies": {
+    "express": "^4.16.2",
     "mongoose": "^4.13.0",
-    "morgan": "^1.9.0",
-    "restify": "^6.3.1",
-    "restify-router": "^0.5.0"
+    "morgan": "^1.9.0"
   },
   "author": "HeartBit",
   "private": true,

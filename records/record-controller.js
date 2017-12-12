@@ -1,6 +1,4 @@
-const restify = require('restify')
-const Router = require('restify-router').Router
-const router = new Router()
+const router = require('express').Router()
 
 const Records = require('./record-model')
 

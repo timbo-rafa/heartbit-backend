@@ -1,14 +1,18 @@
-const restify = require('restify')
-const Router = require('restify-router').Router
-const router = new Router()
+const router = require('express').Router()
 
 const Patients = require('./patient-model')
 
 console.log('GET /patients list patients')
 router.get('/', function (req, res, next) {
-  var debug = 'Hello from patient-controller.js!'
-  console.log(debug)
-  res.send(debug)
+  // treat ?query= (?)
+  Patients.find({}, function (err, patients) {
+    res.status(200).send(patients)
+  })
+  console.log('patient-controller GET /')
 })
+
+//router.post('/', function (req, res, next) {
+
+//})
 
 module.exports = router

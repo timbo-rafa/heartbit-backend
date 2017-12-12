@@ -1,11 +1,10 @@
 const PORT = 8000
 const HOST = '127.0.0.1'
-const restify = require('restify')
+const express = require('express')
+const app = express()
 const morganLogger = require('morgan')
 
-const server = restify.createServer( { name: 'heartbit' } )
-
-server
+app
   .use(morganLogger('dev'))
   //Allow the use of POST
   //.use(restify.fullResponse())
@@ -16,18 +15,20 @@ server
 const patientRouter = require('./patients/patient-controller')
 const recordRouter  = require('./records/record-controller')
 
-patientRouter.applyRoutes(server, '/patients')
-recordRouter.applyRoutes(server, '/patients/:id/records')
+app.use('/patients', patientRouter)
+app.use('/patients/:id/records', recordRouter)
 
 // server ping (last route)
-server.get('/', function pingSuccess (req, res, next) {
+app.get('/', function pingSuccess (req, res, next) {
   'use strict'
 
-  res.send(200)
+  console.log('Server ping on /')
+  res.sendStatus(200)
+  //res.status(200).send({})
 })
 
-server.listen(PORT, HOST, function () {
-  console.log('Server %s listening at %s', server.name, server.url)
+app.listen(PORT, HOST, function () {
+  console.log('Server %s listening at %s', PORT, HOST)
 })
 
-module.exports = server
+module.exports = app
