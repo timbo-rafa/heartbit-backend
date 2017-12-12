@@ -33,6 +33,7 @@ describe('patient controller', function () {
       request.expect(function (res) {
         res.body.forEach( function ( patient ) {
           patient.should.have.property('name')
+          patient.should.have.property('records')
         })
       })
       request.end(done)
@@ -53,6 +54,7 @@ describe('patient controller', function () {
       request.expect(200)
       request.expect(function (res) {
         res.body.should.have.property('name')
+        patient.should.have.property('records')
       })
       request.end(done)
     })
