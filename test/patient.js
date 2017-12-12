@@ -12,14 +12,14 @@ describe('patient controller', function () {
       request = request.post('/patients')
       request.send({})
       request.expect(400)
-      request.expect({ 'parameter': 'required' })
+      request.expect({ 'name': 'required' })
       request.end(done)
     })
 
     it('should create with valid parameters', function (done) {
       var request = supertest(app)
       request = request.post('/patients')
-      request.send({})
+      request.send({ 'name': 'John' })
       request.expect(201)
       request.end(done)
     })
@@ -31,7 +31,9 @@ describe('patient controller', function () {
       request = request.get('/patients')
       request.expect(200)
       request.expect(function (res) {
-        res.body.should.equal({})
+        res.body.forEach( function ( patient ) {
+          patient.should.have.property('name')
+        })
       })
       request.end(done)
     })
@@ -50,7 +52,7 @@ describe('patient controller', function () {
       request = request.get('/patients/1')
       request.expect(200)
       request.expect(function (res) {
-        res.body.should.equal({})
+        res.body.should.have.property('name')
       })
       request.end(done)
     })
