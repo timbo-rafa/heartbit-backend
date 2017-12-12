@@ -1,0 +1,8 @@
+{
+  "MONGOHQ_URL":"mongodb://localhost/heartbit",
+  "REDISCLOUD_URL": null,
+  "PAGE_SIZE":20,
+  "PASSWORD_SALT": "/CrA+AerPAaVE3ShtGLEhl0I3gJNJWQvEAUjwnRSjAEmkeXLM3NUYYPXY4HuYDM1bCk=",
+  "CRYPTO_ALGORITHM": "sha1",
+  "PORT":8888
+}
