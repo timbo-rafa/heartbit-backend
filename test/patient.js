@@ -1,9 +1,17 @@
 const should = require('should')
 const supertest = require('supertest')
 const app = require('../index')
+const Patient = require('../patients/patient-model')
+
 
 describe('patient controller', function () {
   'use strict'
+
+  before(function (done) {
+    Patient.remove(function (err, removed) {
+      done()
+    })
+  })
 
   describe('create', function (done) {
 
@@ -49,11 +57,10 @@ describe('patient controller', function () {
 
     it('should show details with valid id', function (done) {
       var request = supertest(app)
-      request = request.get('/patients/1')
+      request = request.get('/patients/John')
       request.expect(200)
       request.expect(function (res) {
         res.body.should.have.property('name')
-        patient.should.have.property('records')
       })
       request.end(done)
     })
@@ -69,7 +76,7 @@ describe('patient controller', function () {
 
     it('should delete with valid id', function (done) {
       var request = supertest(app)
-      request = request.del('/patients/1')
+      request = request.del('/patients/John')
       request.expect(204)
       request.end(done)
     })
