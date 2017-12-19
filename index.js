@@ -14,10 +14,10 @@ app
   .use(bodyParser.urlencoded({'extended': true}))
 
 const patientRouter = require('./patients/patient-controller')
-const recordRouter  = require('./records/record-controller')
+//const recordRouter  = require('./records/record-controller')
 
 app.use('/patients', patientRouter)
-app.use('/patients/:id/records', recordRouter)
+//app.use('/patients/:patient/records', recordRouter)
 
 // server ping (last route)
 app.get('/', function pingSuccess (req, res, next) {
@@ -44,7 +44,7 @@ app.use(function handleErrors (error, request, response, next) {
   response.status(500).end()
 })
 
-app.listen(nconf.get('PORT'), HOST, function () {
-  console.log('Server listening at %s:%s', HOST, nconf.get('PORT'))
+app.listen(nconf.get('PORT'), function () {
+  console.log('Server listening at %s', nconf.get('PORT'))
 })
 module.exports = app

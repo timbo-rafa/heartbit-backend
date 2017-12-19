@@ -14,10 +14,6 @@ const schema = new mongoose.Schema({
   'updatedAt': {
     'type': Date
   },
-  'records': [{
-    'type': mongoose.Schema.ObjectId,
-    'ref' : 'Record'
-  }]
 }, {
   'strict': true,
   'toJSON': {

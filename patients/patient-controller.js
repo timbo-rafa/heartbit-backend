@@ -5,7 +5,7 @@ const Patient = require('./patient-model')
 console.log('patient-controller')
 router
   .route('/')
-  .get(function (req, res, next) {
+  .get(function listPatients(req, res, next) {
     'use strict'
 
     // treat ?query= (?)
@@ -16,19 +16,18 @@ router
       }
       return res.status(200).send(patients)
     })
-    console.log('pc / get')
 })
 
-  .post(function (request, response, next) {
+  .post(function addPatient(request, response, next) {
     'use strict'
 
     var patient  = new Patient(request.body)
-    console.log('new pat', request.body, patient)
+    console.log('new patient', request.body, patient)
     patient.save(function (error) {
       if (error) {
         return next(error)
       }
-      return response.status(201).end()
+      return response.status(201).send(patient)
     })
   })
 
@@ -45,6 +44,7 @@ router
 router.param('patient', function findPatient (request, response, next, id) {
   'use strict'
 
+  console.log('patient-controller rparam', id)
   var query = Patient.findOne()
   query.where('_id').equals(id)
   query.exec(function foundPatient (error, patient) {
@@ -54,5 +54,8 @@ router.param('patient', function findPatient (request, response, next, id) {
     return next()
   })
 })
+
+const recordRouter = require('./records/record-controller')
+router.use('/:patient/records',recordRouter)
 
 module.exports = router

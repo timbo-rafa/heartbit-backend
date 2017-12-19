@@ -13,7 +13,7 @@
   "main": "index.js",
   "scripts": {
     "test": "MONGOHQ_URL=mongodb://localhost/test NODE_ENV=test mocha -b",
-    "start": "MONGOHQ_URL=mongodb://localhost/heartbit node index.js"
+    "start": "node index.js"
   },
   "devDependencies": {
     "mocha": "^4.0.1",

@@ -12,7 +12,7 @@ describe('patient controller', function () {
       request = request.post('/patients')
       request.send({})
       request.expect(400)
-      request.expect({ 'name': 'required' })
+      //request.expect({ 'name': 'required' })
       request.end(done)
     })
 
@@ -33,7 +33,6 @@ describe('patient controller', function () {
       request.expect(function (res) {
         res.body.forEach( function ( patient ) {
           patient.should.have.property('name')
-          patient.should.have.property('records')
         })
       })
       request.end(done)
