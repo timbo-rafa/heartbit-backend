@@ -41,6 +41,20 @@ router
     return response.status(200).send(patient)
   })
 
+router
+  .route('/:patient')
+  .delete(function deletePatient (request, response, next) {
+    'use strict'
+
+    var patient = request.patient
+    return patient.remove(function removedPatient (error) {
+      if (error) return next(error)
+
+      // TODO remove associated records
+      return response.status(204).end()
+    })
+  })
+
 router.param('patient', function findPatient (request, response, next, id) {
   'use strict'
 

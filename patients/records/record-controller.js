@@ -47,11 +47,32 @@ router
     return response.status(200).send(record)
   })
 
+router
+  .route('/:record')
+  .delete(function deleteRecord (request, response, next) {
+    'use strict'
+
+    var record = request.record
+    return record.remove(function removedRecord (error) {
+      if (error) return next(error)
+
+      return response.status(204).end()
+    })
+  })
+
 router.param('record', function findRecord (request, response, next, id) {
   'use strict'
 
   console.log('record-controller rparam', id)
 
+  var query = Record.findOne()
+  query.where('_id').equals(id)
+  query.exec(function foundRecord (error, record) {
+    if (error) return next(error)
+    if (!record) return response.status(404).end()
+    request.record = record
+    return next()
+  })
 })
 
 module.exports = router
