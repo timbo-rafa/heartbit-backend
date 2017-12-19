@@ -36,6 +36,9 @@ app.use(function handleErrors (error, request, response, next) {
       if (error.name === "ValidationError") {
         return response.status(400).send(error.message)
       }
+      else if (error.name === "MongooseError") {
+        return response.status(400).send(error.message)
+      }
       console.log('server error:', error)
       return response.status(400).send(error)
     }
