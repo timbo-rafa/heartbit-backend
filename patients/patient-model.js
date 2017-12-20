@@ -12,6 +12,15 @@ const schema = new mongoose.Schema({
     'required': true
   },
   */
+  'age': {
+    'type': Number
+  },
+  'doctor': {
+    'type': String
+  },
+  'insurance': {
+    'type': String
+  },
   'createdAt': {
     'type': Date,
     'default': Date.now

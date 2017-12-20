@@ -4,9 +4,15 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
   'patient': {
-    'type': mongoose.Schema.ObjectId,
+    'type': 'String',
     'required': true,
     'ref': 'Patient'
+  },
+  'lab': {
+    'type': String
+  },
+  'doctor': {
+    'type': String
   },
   'glucose': {
     'type': Number
@@ -29,11 +35,7 @@ const schema = new mongoose.Schema({
   },
   'updatedAt': {
     'type': Date
-  },
-  'records': [{
-    'type': mongoose.Schema.ObjectId,
-    'ref' : 'Record'
-  }]
+  }
 }, {
   'strict': true,
   'toJSON': {

@@ -21,7 +21,11 @@ router
   .post(function addPatient(request, response, next) {
     'use strict'
 
-    var patient  = new Patient(request.body)
+    console.log(request.body)
+    var patientJSON = request.body
+    patientJSON.id = patientJSON.name
+
+    var patient  = new Patient(patientJSON)
     //console.log('new patient', request.body, patient)
     patient.save(function (error) {
       if (error) {
@@ -58,10 +62,11 @@ router
 router.param('patient', function findPatient (request, response, next, id) {
   'use strict'
 
-  //console.log('patient-controller rparam', id)
+  console.log('patient-controller rparam', id)
   var query = Patient.findOne()
   query.where('_id').equals(id)
   query.exec(function foundPatient (error, patient) {
+    console.log('patient param mongo callback', error, patient)
     if (error) return next(error)
     if (!patient) return response.status(404).end()
     request.patient = patient

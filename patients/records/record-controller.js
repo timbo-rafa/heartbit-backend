@@ -14,8 +14,8 @@ router
     'use strict'
 
     // treat ?query= (?)
-    Record.find({ patient: req.patient }, function (err, records) {
-      //console.log('find', err, records)
+    Record.find({ "patient" : req.patient._id }, function (err, records) {
+      console.log('====findRecords', err, records)
       if (err) {
         return next(err)
       }
@@ -68,6 +68,7 @@ router.param('record', function findRecord (request, response, next, id) {
   var query = Record.findOne()
   query.where('_id').equals(id)
   query.exec(function foundRecord (error, record) {
+    console.log('record param mongo callback', error, record)
     if (error) return next(error)
     if (!record) return response.status(404).end()
     request.record = record
