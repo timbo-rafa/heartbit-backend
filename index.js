@@ -39,27 +39,32 @@ app.get('/', function pingSuccess (req, res, next) {
   'use strict'
 
   console.log('Server ping on /')
-  res.sendStatus(200)
-  //res.status(200).send({})
+  //res.sendStatus(200)
+  res.status(200).send({})
 })
 
 app.use(function handleErrors (error, request, response, next) {
   'use strict'
 
-		console.error(error)
+		console.error('handleErrors:',error)
 		if(error) {
+				console.error('error.message', error.message)
 				//TODO error 409
-				if (error.name === "ValidationError") {
-						return response.status(400).send(error.message)
+				if (error.name === "CastError") {
+						return response.status(404).send( { error: error.message })
+				}
+				else if (error.name === "ValidationError") {
+						return response.status(400).send({ error: error.message })
 				}
 				else if (error.name === "MongooseError") {
-						return response.status(400).send(error.message)
+						return response.status(400).send({ error: error.message } )
 				}
 				console.log('server error:', error)
-				return response.status(400).send(error)
+				return response.status(400).send({ error: error })
 		}
   console.error(error.stack)
   response.status(500).end()
+		return process.exit()
 })
 
 app.listen(nconf.get('PORT'), function () {
