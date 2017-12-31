@@ -28,12 +28,13 @@ router
 
     
     var record  = new Record(request.body)
-    console.log('new record', request.body, record)
-    record.save(function (error) {
+    //console.log('new record', request.body, record)
+    record.save(function (error, savedRecord) {
+      console.log('newRecord', error, savedRecord)
       if (error) {
         return next(error)
       }
-      return response.status(201).send(record)
+      return response.status(201).send(savedRecord)
     })
   })
 

@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 const schema = new mongoose.Schema({
+  /*
   '_id': {
     'type': String
   },
-  /*
+  */
   'name': {
     'type': String,
     'required': true
   },
-  */
   'age': {
     'type': Number
   },
@@ -38,6 +38,7 @@ const schema = new mongoose.Schema({
   }
 })
 
+/*
 schema.virtual('name')
   .set(function (name) {
     this._id = name
@@ -45,7 +46,7 @@ schema.virtual('name')
   .get(function () {
     return this._id//.toString()
   })
-
+*/
 schema.pre('save', function setUpdatedAt (next) {
   'use strict'
 

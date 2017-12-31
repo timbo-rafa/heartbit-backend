@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
   'patient': {
-    'type': 'String',
+    'type': mongoose.Schema.ObjectId,
     'required': true,
     'ref': 'Patient'
   },
