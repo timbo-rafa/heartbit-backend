@@ -25,6 +25,7 @@ router
     var patientJSON = request.body
     patientJSON.id = patientJSON.name
 
+    //patientJSON.createdAt = Date.now()
     var patient  = new Patient(patientJSON)
     //console.log('new patient', request.body, patient)
     patient.save(function (error) {
