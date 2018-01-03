@@ -46,6 +46,21 @@ router
     return response.status(200).send(patient)
   })
 
+  .put(function editPatient(request, response, next) {
+    'use strict'
+
+    var patient = request.patient 
+
+    patient = Object.assign(patient, request.body)
+
+    console.log('editing patient', patient)
+    return patient.save( function editPatient(error, savedPatient) {
+      console.log('edited patient', error, savedPatient)
+      if (error) return next(error)
+      return response.status(200).send(patient)
+    })
+  })
+
 router
   .route('/:patient')
   .delete(function deletePatient (request, response, next) {
