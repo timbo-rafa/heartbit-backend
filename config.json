@@ -1,9 +1,9 @@
 {
-  "MONGOHQ_URL":"mongodb://localhost/heartbit",
-  "REDISCLOUD_URL": null,
-  "PAGE_SIZE":20,
-  "PASSWORD_SALT": "/CrA+AerPAaVE3ShtGLEhl0I3gJNJWQvEAUjwnRSjAEmkeXLM3NUYYPXY4HuYDM1bCk=",
-  "CRYPTO_ALGORITHM": "sha1",
-  "PORT":8888,
-  "HOST": "127.0.0.1"
+    "MONGOHQ_URL": "mongodb://heroku_tb81bs2k:ps1lvrjqvjhadlkn70upti51ph@ds135777.mlab.com:35777/heroku_tb81bs2k",
+    "REDISCLOUD_URL": null,
+    "PAGE_SIZE": 20,
+    "PASSWORD_SALT": "/CrA+AerPAaVE3ShtGLEhl0I3gJNJWQvEAUjwnRSjAEmkeXLM3NUYYPXY4HuYDM1bCk=",
+    "CRYPTO_ALGORITHM": "sha1",
+    "PORT": 8888,
+    "HOST": "127.0.0.1"
 }
