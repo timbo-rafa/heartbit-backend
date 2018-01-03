@@ -66,7 +66,7 @@ app.use(function handleErrors (error, request, response, next) {
 		return process.exit()
 })
 
-app.listen(nconf.get('PORT'), nconf.get('HOST'), function () {
-  console.log('Server listening at %s:%s', nconf.get('HOST'), nconf.get('PORT'))
+app.listen(nconf.get('PORT'), function () {
+  console.log('Server listening at %s', nconf.get('PORT'))
 })
 module.exports = app
