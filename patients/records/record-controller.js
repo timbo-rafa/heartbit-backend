@@ -48,6 +48,21 @@ router
     return response.status(200).send(record)
   })
 
+  .put(function editRecord(request, response, next) {
+    'use strict'
+
+    var record = request.record 
+
+    record= Object.assign(record, request.body)
+
+    console.log('editing record', record)
+    return record.save( function editRecord(error, savedRecord) {
+      console.log('edited record', error, savedRecord)
+      if (error) return next(error)
+      return response.status(200).send(record)
+    })
+  })
+
 router
   .route('/:record')
   .delete(function deleteRecord (request, response, next) {

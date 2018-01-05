@@ -143,6 +143,36 @@ describe('record controller', function () {
     })
   })
 
+  describe('update', function (done) {
+
+    it('should raise error with invalid id', function (done) {
+      var request = supertest(app)
+      request = request.put(recordUrl + '/invalid')
+      request.expect(404)
+      request.end(done)
+    })
+
+    it('should show details with valid id', function (done) {
+      var request = supertest(app)
+      request = request.put(recordUrl + '/' + superRecord.id)
+      request.send({'doctor' : 'Edited Doctor' })
+      request.expect(200)
+      request.expect(function (res) {
+        var record = res.body
+        record.should.have.property('patient')
+        record.should.have.property('lab')
+        record.should.have.property('doctor')
+        record.should.have.property('glucose')
+        record.should.have.property('redBloodCells')
+        record.should.have.property('createdAt')
+        record.should.have.property('updatedAt')
+
+        record.doctor.should.equal('Edited Doctor')
+      })
+      request.end(done)
+    })
+  })
+
   describe('delete', function (done) {
     /*
     var superRecord
