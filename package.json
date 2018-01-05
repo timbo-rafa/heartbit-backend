@@ -14,7 +14,7 @@
   "scripts": {
     "test": "MONGOHQ_URL=mongodb://localhost/test NODE_ENV=test mocha -b --exit",
     "start": "MONGOHQ_URL=mongodb://heartbit:heartbit@ds137110.mlab.com:37110/heartbit node index.js",
-    "start0": "HOST=0.0.0.0 node index.js"
+    "local": "MONGOHQ_URL=mongodb://localhost/heartbit node index.js"
   },
   "devDependencies": {
     "mocha": "^4.0.1",
