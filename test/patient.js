@@ -63,7 +63,7 @@ describe('patient controller', function () {
 
     it('should raise error with invalid id', function (done) {
       var request = supertest(app)
-      request = request.get('/patients/invalid')
+      request = request.get('/patients/undefined')
       request.expect(404)
       request.end(done)
     })
@@ -92,7 +92,7 @@ describe('patient controller', function () {
 
     it('should raise error with invalid id', function (done) {
       var request = supertest(app)
-      request = request.del('/patients/invalid')
+      request = request.del('/patients/undefined')
       request.expect(404)
       request.end(done)
     })

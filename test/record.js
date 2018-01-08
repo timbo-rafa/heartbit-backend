@@ -120,7 +120,7 @@ describe('record controller', function () {
 
     it('should raise error with invalid id', function (done) {
       var request = supertest(app)
-      request = request.get(recordUrl + '/invalid')
+      request = request.get(recordUrl + '/undefined')
       request.expect(404)
       request.end(done)
     })
@@ -147,7 +147,7 @@ describe('record controller', function () {
 
     it('should raise error with invalid id', function (done) {
       var request = supertest(app)
-      request = request.put(recordUrl + '/invalid')
+      request = request.put(recordUrl + '/undefined')
       request.expect(404)
       request.end(done)
     })
@@ -186,7 +186,7 @@ describe('record controller', function () {
 
     it('should raise error with invalid id', function (done) {
       var request = supertest(app)
-      request = request.del(recordUrl + '/invalid')
+      request = request.del(recordUrl + '/undefined')
       request.expect(404)
       request.end(done)
     })
