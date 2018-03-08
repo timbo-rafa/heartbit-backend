@@ -1,5 +1,4 @@
 {
-  "MONGOHQ_URL":"mongodb://heartbit:heartbit@ds137110.mlab.com:37110/heartbit",
   "REDISCLOUD_URL": null,
   "PAGE_SIZE":20,
   "PASSWORD_SALT": "/CrA+AerPAaVE3ShtGLEhl0I3gJNJWQvEAUjwnRSjAEmkeXLM3NUYYPXY4HuYDM1bCk=",
